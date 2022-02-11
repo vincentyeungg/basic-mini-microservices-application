@@ -54,5 +54,6 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(_PORT, () => {
+  console.log('v55');
   console.log(`Listenining on port ${_PORT}`);
 });
