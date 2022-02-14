@@ -29,7 +29,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   // by default the status of each comment will be pending at the start
   comments.push({ id: commentId, content, status: 'pending' });
 
-  await axios.post('http://localhost:4005/events', {
+  await axios.post('http://event-bus-srv:4005/events', {
     type: 'CommentCreated',
     data: {
       id: commentId,
@@ -61,7 +61,7 @@ app.post('/events', async (req, res) => {
     comment.status = status;
 
     // once updated, emit this event back to the event bus with the updated content
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
       type: 'CommentUpdated',
       data: {
         id,
